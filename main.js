@@ -1,93 +1,105 @@
 const persons = [
   {
-    id: 1,
-    firstname: "Dan",
-    lastname: "Tiger",
-    image: "url",
-    birthday: "03.18.1990",
+    name: "Luke Skywalker",
+    height: "172",
+    mass: "77",
+    eye_color: "blue",
     gender: "male",
-    hobbie: ["Football", "Reading"],
-    nationality: "switzerland",
-    friends: [325330, 325334],
-    residence: 10041,
   },
   {
-    id: 2,
-    firstname: "Fan",
-    lastname: "Tiger",
-    image: "url",
-    birthday: "03.18.2005",
+    name: "Darth Vader",
+    height: "202",
+    mass: "136",
+    eye_color: "yellow",
     gender: "male",
-    hobbie: ["Football", "Reading"],
-    nationality: "switzerland",
-    friends: [325330, 325334],
-    residence: 10041,
   },
   {
-    id: 3,
-    firstname: "Frank",
-    lastname: "Lion",
-    image: "url",
-    birthday: "10.05.1991",
-    gender: "male",
-    hobbie: ["walking", "basketball"],
-    nationality: "syria",
-    friends: ["", "", ""],
-    residence: 10041,
-  },
-  {
-    id: 4,
-    firstname: "Bilal",
-    lastname: "Zakki",
-    image: "url",
-    birthday: "08.19.1999",
+    name: "Leia Organa",
+    height: "150",
+    mass: "49",
+    eye_color: "brown",
     gender: "female",
-    hobbie: ["swimming", "walking"],
-    nationality: "canda",
-    friends: [325330, 325326],
-    residence: 10012,
+  },
+  {
+    name: "Anakin Skywalker",
+    height: "188",
+    mass: "84",
+    eye_color: "blue",
+    gender: "male",
   },
 ];
+//map
+const map1 = persons.map((persons) => persons.name);
+console.log({ map1 });
+const map2 = persons.map((persons) => persons.height);
+console.log({ map2 });
+const map3 = persons.map((persons) => ({
+  name: persons.name,
+  height: persons.height,
+}));
+console.log({ map3 });
 
-const foundId = persons.find(item=> item.id==2)
-console.log(foundId, 2)
+const map4 = persons.map((persons) => persons.name.split(" ")[0]);
+console.log({ map4 });
 
-const getByGender = persons.filter((item) => item.gender == "male");
+//reduce
+let mapMethod = persons.map((persons) => parseInt(persons.mass));
+let reducemethod = mapMethod.reduce(function (acc, total) {
+  return acc + total;
+});
+console.log({ reducemethod });
+let heightMap = persons.map((persons) => parseInt(persons.height));
+let reduceHeight = heightMap.reduce(function (acc, total) {
+  return acc + total;
+});
+console.log({ reduceHeight });
 
-console.log({ getByGender });
+let mapEye = persons.map((persons) => persons.eye_color);
+let reduceEye = mapEye.reduce((acc, value) => acc + value);
+console.log(reduceEye.length);
+let mapName = persons.map((persons) => persons.name);
+let reduceName = mapName.reduce((acc, value) => acc + value);
+console.log(reduceName.length);
 
-const objData = {
-  id: 0,
-  firstname: "orxan",
-  lastname: "aslanov",
-  image: "url",
-  birthday: "08.19.1997",
-  gender: "male",
-  hobbie: ["football", "run"],
-  nationality: "canda",
-  friends: [35435, 32536],
-  residence: 1234,
-};
+//filter
+let filterMethod = persons.filter((item) => parseInt(item.mass) > 100);
+console.log(filterMethod);
+let filterMethod2 = persons.filter((item) => item.height <= 200);
+console.log(filterMethod2);
+let filterMethod3 = persons.filter((item) => item.gender=="male");
+console.log(filterMethod3);
+let filterMethod4 = persons.filter((item) => item.gender=="female");
+console.log(filterMethod4);
+//sort
 
-persons.unshift(objData);
-console.log({ persons });
+let sortMethod1 = persons.sort((a, b) => b.gender.localeCompare(a.gender));
+console.log({ sortMethod1 });
+let sortMethod2 = persons.sort((x, y) => Number(x.height) - Number(y.height));
+console.log({ sortMethod2 });
+let sortMethod3 = persons.sort((x, y) => Number(x.mass) - Number(y.mass));
+console.log({ sortMethod3 });
+let sortMethod4 =persons.sort(item =>item.name)
+console.log({sortMethod4});
 
-const pushData = {
-  id: 5,
-  firstname: "hemid",
-  lastname: "jamilli",
-  image: "url",
-  birthday: "08.03.1995",
-  gender: "male",
-  hobbie: ["football", "run"],
-  nationality: "canda",
-  friends: [35435, 32536],
-  residence: 1234,
-};
-persons.push(pushData);
-console.log({ persons });
+//every
+let everyMethod1 =persons.every((item)=>item.height < 200);
+console.log({everyMethod1});
 
-const arraySome = persons.some((item) => item.gender == "female");
-console.log({ arraySome });
-const arrayEvery = persons.every((item) => item.gender == "female");
-console.log({ arrayEvery });
+let everyMethod2 = persons.every((item) => item.eye_color === "blue");
+console.log({ everyMethod2 });
+
+let everytMethod3 =persons.every((item)=>item.mass > 40);
+console.log({everytMethod3});
+
+let everyMethod4 = persons.every((item) => item.gender === "male");
+console.log({ everyMethod4 });
+
+//some
+let getBySome1 = persons.some((persons) => persons.gender === "male");
+console.log({ getBySome1 });
+let getBySome2 = persons.some((item) => item.mass < 50);
+console.log({ getBySome2 });
+let getBySome3 = persons.some((item) => item.eye_color === "blue");
+console.log({ getBySome3 });
+let getBySome4 = persons.some((item) => item.height > 200);
+console.log({ getBySome4 });
